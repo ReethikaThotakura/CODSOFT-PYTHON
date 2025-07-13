@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 25px 20px;
+    margin-bottom: 25px;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.display-input {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 300;
+    opacity: 0.8;
+    min-height: 30px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.display-result {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 500;
+    min-height: 45px;
+    margin-top: 5px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 320px;
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    height: 70px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 24px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-number {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    color: #333333;
+}
+
+.btn-number:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
+}
+
+.btn-operator {
+    background: linear-gradient(145deg, #3B82F6, #2563EB);
+    color: white;
+}
+
+.btn-operator:hover {
+    background: linear-gradient(145deg, #2563EB, #1D4ED8);
+}
+
+.btn-clear {
+    background: linear-gradient(145deg, #EF4444, #DC2626);
+    color: white;
+}
+
+.btn-clear:hover {
+    background: linear-gradient(145deg, #DC2626, #B91C1C);
+}
+
+.btn-equals {
+    background: linear-gradient(145deg, #10B981, #059669);
+    color: white;
+    grid-column: span 2;
+}
+
+.btn-equals:hover {
+    background: linear-gradient(145deg, #059669, #047857);
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+.python-demo {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.python-demo h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.python-demo p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.python-demo code {
+    background: #f4f4f4;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    color: #d63384;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calculator {
+        padding: 20px;
+    }
+    
+    .buttons {
+        width: 280px;
+        gap: 10px;
+    }
+    
+    .btn {
+        height: 60px;
+        font-size: 20px;
+    }
+    
+    .display-result {
+        font-size: 28px;
+    }
+    
+    .display-input {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons {
+        width: 240px;
+    }
+    
+    .btn {
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+/* Animation for result display */
+.result-animation {
+    animation: resultPop 0.3s ease-out;
+}
+
+@keyframes resultPop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Error state */
+.error {
+    color: #EF4444 !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
